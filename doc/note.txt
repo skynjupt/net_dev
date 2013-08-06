@@ -1,0 +1,4 @@
+00 : git push fails: RPC failed; result=22, HTTP code = 411
+A:   git config http.postBuffer 524288000 for 500MB
+R:
+http://stackoverflow.com/questions/12651749/git-push-fails-rpc-failed-result-22-http-code-411
