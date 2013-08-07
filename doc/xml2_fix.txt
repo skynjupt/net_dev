@@ -1,0 +1,81 @@
+cc -I../../inc   -c -o testxml.o testxml.c
+gcc -o xmltest testxml.o -L../../lib -lxml2 
+../../lib/libxml2.a(xmlIO.o): In function `xmlGzfileOpen_real':
+xmlIO.c:(.text+0xee6): undefined reference to `gzdopen'
+xmlIO.c:(.text+0xf8a): undefined reference to `gzopen'
+../../lib/libxml2.a(xmlIO.o): In function `xmlGzfileOpenW':
+xmlIO.c:(.text+0x107b): undefined reference to `gzdopen'
+xmlIO.c:(.text+0x1106): undefined reference to `gzopen'
+../../lib/libxml2.a(xmlIO.o): In function `xmlGzfileRead':
+xmlIO.c:(.text+0x1138): undefined reference to `gzread'
+../../lib/libxml2.a(xmlIO.o): In function `xmlGzfileWrite':
+xmlIO.c:(.text+0x1179): undefined reference to `gzwrite'
+../../lib/libxml2.a(xmlIO.o): In function `xmlGzfileClose':
+xmlIO.c:(.text+0x11ac): undefined reference to `gzclose'
+../../lib/libxml2.a(xmlIO.o): In function `xmlFreeZMemBuff':
+xmlIO.c:(.text+0x124f): undefined reference to `deflateEnd'
+../../lib/libxml2.a(xmlIO.o): In function `xmlCreateZMemBuff':
+xmlIO.c:(.text+0x1370): undefined reference to `deflateInit2_'
+xmlIO.c:(.text+0x13fa): undefined reference to `crc32'
+../../lib/libxml2.a(xmlIO.o): In function `xmlZMemBuffAppend':
+xmlIO.c:(.text+0x165d): undefined reference to `deflate'
+xmlIO.c:(.text+0x16ef): undefined reference to `crc32'
+../../lib/libxml2.a(xmlIO.o): In function `xmlZMemBuffGetContent':
+xmlIO.c:(.text+0x1749): undefined reference to `deflate'
+../../lib/libxml2.a(xmlIO.o): In function `__xmlParserInputBufferCreateFilename':
+xmlIO.c:(.text+0x272e): undefined reference to `gzread'
+xmlIO.c:(.text+0x2772): undefined reference to `gzrewind'
+../../lib/libxml2.a(xpath.o): In function `xmlXPathFormatNumber':
+xpath.c:(.text+0x3c52): undefined reference to `log10'
+../../lib/libxml2.a(xpath.o): In function `xmlXPathModValues':
+xpath.c:(.text+0xaa99): undefined reference to `fmod'
+../../lib/libxml2.a(xpath.o): In function `xmlXPathFloorFunction':
+xpath.c:(.text+0xe16a): undefined reference to `fmod'
+../../lib/libxml2.a(xpath.o): In function `xmlXPathCeilingFunction':
+xpath.c:(.text+0xe293): undefined reference to `fmod'
+../../lib/libxml2.a(xpath.o): In function `xmlXPathRoundFunction':
+xpath.c:(.text+0xe469): undefined reference to `fmod'
+../../lib/libxml2.a(xpath.o): In function `xmlXPathStringEvalNumber':
+xpath.c:(.text+0xf483): undefined reference to `pow'
+../../lib/libxml2.a(xpath.o): In function `xmlXPathCompNumber':
+xpath.c:(.text+0xf741): undefined reference to `pow'
+../../lib/libxml2.a(nanohttp.o): In function `xmlNanoHTTPFreeCtxt':
+nanohttp.c:(.text+0x5db): undefined reference to `inflateEnd'
+../../lib/libxml2.a(nanohttp.o): In function `xmlNanoHTTPScanAnswer':
+nanohttp.c:(.text+0x1322): undefined reference to `inflateInit2_'
+../../lib/libxml2.a(nanohttp.o): In function `xmlNanoHTTPRead':
+nanohttp.c:(.text+0x1cc1): undefined reference to `inflate'
+../../lib/libxml2.a(xmlschemastypes.o): In function `_xmlSchemaDateAdd':
+xmlschemastypes.c:(.text+0x6676): undefined reference to `floor'
+xmlschemastypes.c:(.text+0x66db): undefined reference to `floor'
+xmlschemastypes.c:(.text+0x67b0): undefined reference to `floor'
+xmlschemastypes.c:(.text+0x67fd): undefined reference to `floor'
+xmlschemastypes.c:(.text+0x683f): undefined reference to `floor'
+../../lib/libxml2.a(xmlschemastypes.o):xmlschemastypes.c:(.text+0x689a): more undefined references to `floor' follow
+collect2: ld 返回 1
+make: *** [xmltest] 错误 1
+
+==================================== 
+
+去掉 HAVE_ZLIB_H
+
+开始以为把宏LIBXML_XPATH_ENABLED去掉，但在config.h中没有找到这个宏的定义的地方，然后用如下命令：
+grep -rl "LIBXML_XPATH_ENABLED" ./
+查找出现这个宏的文件，无果。
+后来找到一篇http://stackoverflow.com/questions/11336477/gcc-will-not-properly-include-math-h文章
+在Makefile里加上-lm ，完美解决。
+
+
+===================================
+Git, fatal: The remote end hung up unexpectedly
+
+git config http.postBuffer 524288000
+
+===================================
+xml2 test
+http://blog.csdn.net/shanzhizi/article/details/7726679
+
+==================================
+ref:
+http://www.linuxfromscratch.org/blfs/view/svn/general/libxml2.html
+http://stackoverflow.com/questions/2075894/how-to-get-the-name-and-value-of-attributes-from-xml-when-using-libxml2-sax-pars
