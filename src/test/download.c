@@ -18,8 +18,8 @@ int main(int argc, char *argv[])
 	FILE *fp;
 	CURLcode res;
 //	char *url = "http://localhost/home/Harry/code/04_curl/aa.txt";
-	char *url = "http://192.168.1.103/aaa.txt";
-//	char *url = "http://ariva.tv/webradio/yp.xml";
+//	char *url = "http://192.168.1.103/aaa.txt";
+	char *url = "http://ariva.tv/webradio/yp.xml";
 	char outfilename[FILENAME_MAX] = "./bbb.txt";
 	curl = curl_easy_init();
 	if (curl)
