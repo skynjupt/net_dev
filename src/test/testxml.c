@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
 	xmlDocSetRootElement(doc, root_note);
 	xmlNewChild(root_note, NULL, BAD_CAST "node1", BAD_CAST "content of node1");
 	node = xmlNewChild(root_note, NULL, BAD_CAST "node3", BAD_CAST "node has attributes");
-	xmlNewProp(node, BAD_CAST "attribure", BAD_CAST "yes");
+	xmlNewProp(node, BAD_CAST "attribute", BAD_CAST "yes");
 	node = xmlNewNode(NULL, BAD_CAST "node4");
 	node1 = xmlNewText(BAD_CAST "other way to create content");
 	xmlAddChild(node, node1);
