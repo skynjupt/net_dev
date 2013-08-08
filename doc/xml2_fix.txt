@@ -79,3 +79,7 @@ http://blog.csdn.net/shanzhizi/article/details/7726679
 ref:
 http://www.linuxfromscratch.org/blfs/view/svn/general/libxml2.html
 http://stackoverflow.com/questions/2075894/how-to-get-the-name-and-value-of-attributes-from-xml-when-using-libxml2-sax-pars
+
+
+http://blog.csdn.net/linjianfengqrh/article/details/7256634
+http://jianlee.ylinux.org/Computer/C/libxml.html
