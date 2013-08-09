@@ -1,11 +1,13 @@
-SRCS:= skycurl.c main.c 
+SRCS:= skycurl.c skyxml2.c main.c 
 OBJS:= $(SRCS:.c=.o) 
+
+CFLAGS+=-I../../inc
 
 MOD:=MAIN
 
 skyapp : $(MOD).mk
 	make -f $< $(OBJS)
-	gcc -o $@ $(OBJS) -L../../lib -lcurl
+	gcc -o $@ $(OBJS) -L../../lib -lcurl -L../../lib -lxml2 -lm
 	
 $(MOD).mk : $(SRCS)
 	cp -f Makefile $@
