@@ -17,7 +17,7 @@ int sky_parse_xml(char *pxml, int len, webradio *pwebradio)
 		return -1;
 	}
 
-//	xmlKeepBlankDefault(0);
+	xmlKeepBlanksDefault(0);
 	pdoc = xmlReadMemory(pxml, len, "in_memory.xml", NULL, 0); 
 	if(pdoc == NULL)
 	{
