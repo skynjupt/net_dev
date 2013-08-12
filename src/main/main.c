@@ -24,9 +24,9 @@ int main(int argc, char *argv[])
 	g_curl = sky_curl_init((sky_string_s *)&g_str);
 	if(g_curl)
 	{
-		curl_easy_setopt(g_curl, CURLOPT_URL, WEB_RADIO_URL);
-		curl_easy_setopt(g_curl, CURLOPT_WRITEFUNCTION, sky_curl_writefunc);
-		curl_easy_setopt(g_curl, CURLOPT_WRITEDATA, &g_str);
+		sky_curl_setopt(g_curl, CURLOPT_URL, WEB_RADIO_URL);
+		sky_curl_setopt(g_curl, CURLOPT_WRITEFUNCTION, sky_curl_writefunc);
+		sky_curl_setopt(g_curl, CURLOPT_WRITEDATA, &g_str);
 		res = sky_curl_perform(g_curl);
 	}
 	
@@ -50,7 +50,6 @@ int main(int argc, char *argv[])
 	} 
 	return 0;
 }
-
 
 void sky_webradio_print(webradio *pwebradio, int num)
 {

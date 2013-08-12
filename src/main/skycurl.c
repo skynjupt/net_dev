@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <curl/curl.h>
+#include <stdarg.h>
 #include "../../inc/skycurl.h"
 
 
@@ -32,13 +33,12 @@ void sky_curl_cleanup(CURL *handle, sky_string_s *s)
 	}
 	curl_easy_cleanup(handle);
 }
-/*
+
 //URLcode curl_easy_setopt(CURL *handle, CURLoption option, parameter);
-CURLcode sky_curl_setopt(CURL *handle, CURLoption option, parameter)
+CURLcode sky_curl_setopt(CURL *handle, CURLoption option, va_list parameter)
 {
 	return curl_easy_setopt(handle, option, parameter);
 }
-*/
 
 size_t sky_curl_writefunc(void *ptr, size_t size, size_t nmemb, sky_string_s *s)
 {
