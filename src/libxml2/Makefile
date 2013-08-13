@@ -1,3 +1,11 @@
+
+#CROSS_COMPILE:=mipsel-linux-uclibc-
+CROSS_COMPILE:=
+
+CC:=$(CROSS_COMPILE)gcc
+AR:=$(CROSS_COMPILE)ar
+STRIP:=$(CROSS_COMPILE)strip
+
 CFLAGS += -I../../inc
 
 libxml2_la_SOURCES = SAX.c entities.c encoding.c error.c parserInternals.c  \
@@ -22,14 +30,20 @@ all : $(MOD).mk
 	@echo --- begin compile ---
 	make -f $(MOD).mk $(OBJS)
 	@echo --- begin ar ---
-	ar -r $(OUT).a $(OBJS)
+	$(AR) -r $(OUT).a $(OBJS)
 	@echo --- success compile and ar ---
+#	$(STRIP) $(OUT).a
 	cp -f $(OUT).a ../../lib/
+
 $(MOD).mk : $(SRCS)
 	cp -f Makefile $@
 	chmod +w $@
-	gcc $(CFLAGS) -M $(SRCS) >> $@
+	$(CC) $(CFLAGS) -M $(SRCS) >> $@
 
+%.o:%.c
+	@echo "-----"$(CC)" "$<"-------"
+	$(CC) $(CFLAGS) -c $< -O1 -o $@
+ 
 .PHONY:test clean
 test:
 	@echo $(SRCS)

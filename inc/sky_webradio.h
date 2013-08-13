@@ -14,4 +14,10 @@ typedef struct webradio_s
 	char genre[GENRE_MAX];
 }webradio;
 
+void sky_webradio_init(void);
+//void sky_webradio_print(webradio *pwebradio, int num);
+void sky_webradio_print(void);
+void sky_webradio_parse_xml(void);
+void sky_webradio_close(void);
+
 #endif
