@@ -31,7 +31,7 @@ $(MOD).mk : $(SRCS)
 
 %.o:%.c
 	@echo "-----"$(CC)" "$<"-------"
-	$(CC) $(CFLAGS) -c $< -O1 -o $@
+	$(CC) $(CFLAGS) -g -c $< -O1 -o $@
 
 .PHONY:test clean
 test:

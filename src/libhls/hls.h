@@ -18,7 +18,7 @@
 #define HLS_MAX_URL_LEN 1024
 
 #define HLS_MAX_LIST_NODE_COUNT 5
-#define HLS_MAX_TS_NODE_COUNT 2048
+#define HLS_MAX_TS_NODE_COUNT 4
 
 #define HLS_URL_BUFFER_SIZE (200*256) 
 typedef struct hls_list_node_s
@@ -42,6 +42,12 @@ struct MemoryStruct {
   char *memory;
   size_t size;
 };
+
+typedef struct _memory_stream_info {
+  char *begin;
+  UINT32 size;
+  UINT32 offset;
+}memory_stream_info;
 
 #define HLS_STREAMINFO "#EXT-X-STREAM-INF"
 #define HLS_STREAMINFO_BANDWIDTH "BANDWIDTH"

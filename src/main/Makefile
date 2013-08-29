@@ -22,7 +22,7 @@ skyapp : $(MOD).mk
 ifdef SUPPORT_WEBRADIO
 	$(CC) -o $@ $(OBJS) -L../../lib -lcurl -L../../lib -lxml2 -lm
 else
-	$(CC) -o $@ $(OBJS) -L../../lib -lhls -L../../lib -lcurl
+	$(CC) -g -o $@ $(OBJS) -L../../lib -lhls -L../../lib -lcurl -pthread
 endif
 	
 $(MOD).mk : $(SRCS)
@@ -32,7 +32,7 @@ $(MOD).mk : $(SRCS)
 
 %.o:%.c
 	@echo "-----"$(CC)" "$<"-------"
-	$(CC) $(CFLAGS) -c $< -O1 -o $@
+	$(CC) $(CFLAGS) -g -c $< -O1 -o $@
 
 .PHONY:clean
 clean:
